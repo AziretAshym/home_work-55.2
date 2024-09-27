@@ -25,10 +25,20 @@ const App = () => {
         );
     };
 
+    const removeIngredient = (title: string) => {
+        setIngredients(prevState =>
+            prevState.map(ingredient =>
+                ingredient.title === title && ingredient.count > 0
+                    ? { ...ingredient, count: ingredient.count - 1 }
+                    : ingredient
+            )
+        );
+    };
+
     return (
         <>
             <div className="container">
-                <Ingredients ingredients={ingredients} addIngredient={addIngredient}/>
+                <Ingredients ingredients={ingredients} addIngredient={addIngredient} removeIngredient={removeIngredient}/>
                 <Burger ingredients={ingredients}/>
             </div>
         </>
